@@ -1,6 +1,4 @@
-# 🎌 JFT-Basic প্রস্তুতি প্ল্যাটফর্ম
-
-> বাংলাদেশী শিক্ষার্থীদের জন্য সম্পূর্ণ JFT-Basic পরীক্ষার প্রস্তুতি সাইট।  
+# 🎌 JFT-Basic 
 > Professional modular Node.js architecture — zero npm dependencies.
 
 ---
