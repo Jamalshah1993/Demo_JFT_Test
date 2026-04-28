@@ -1,0 +1,202 @@
+/**
+ * frontend/styles/dashboard.css
+ * Dashboard, auth forms, and visa guide page styles.
+ */
+
+/* ═══════════════════════════════════════════════════════════
+   DASHBOARD
+═══════════════════════════════════════════════════════════ */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--sp-6);
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+/* Stats panel */
+.stats-panel {
+  position: sticky; top: 80px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  box-shadow: var(--shadow-sm);
+}
+.stats-panel__title { font-weight: 700; margin-bottom: var(--sp-5); }
+.stats-panel__grid  {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+}
+
+/* History list */
+.history-list { display: flex; flex-direction: column; gap: var(--sp-3); }
+.history-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-4) var(--sp-5);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: var(--sp-3);
+  transition: box-shadow var(--t-base);
+}
+.history-item:hover { box-shadow: var(--shadow-md); }
+.history-item__left    { display: flex; flex-direction: column; gap: 4px; }
+.history-item__title   { font-weight: 700; font-size: 0.95rem; }
+.history-item__meta    { font-size: 0.78rem; color: var(--text-muted); }
+.history-item__right   { display: flex; align-items: center; gap: var(--sp-3); flex-shrink: 0; }
+.history-item__score   { font-size: 1.6rem; font-weight: 700; color: var(--red); line-height: 1; }
+
+/* ═══════════════════════════════════════════════════════════
+   STUDY PLAN
+═══════════════════════════════════════════════════════════ */
+.study-plan { display: flex; flex-direction: column; gap: var(--sp-5); }
+.study-week__label {
+  font-weight: 700; font-size: 0.875rem;
+  color: var(--red); margin-bottom: var(--sp-3);
+  display: flex; align-items: center; gap: var(--sp-2);
+}
+.study-week__tasks { display: flex; flex-direction: column; gap: var(--sp-2); }
+.study-task {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: 0.85rem; display: flex; gap: var(--sp-3); align-items: flex-start;
+  transition: background var(--t-fast);
+}
+.study-task:hover   { background: var(--bg-subtle); }
+.study-task__icon   { font-size: 1.05rem; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════
+   AUTH PAGES (Login / Register)
+═══════════════════════════════════════════════════════════ */
+.auth-page {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--sp-6);
+  background: var(--bg);
+}
+.auth-card {
+  width: 100%; max-width: 420px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--sp-10);
+  box-shadow: var(--shadow-xl);
+}
+.auth-card__logo  { text-align: center; margin-bottom: var(--sp-6); }
+.auth-card__jp    {
+  font-family: var(--font-jp);
+  font-size: 2.5rem; color: var(--red);
+  display: block; line-height: 1;
+}
+.auth-card__title { font-size: 1.4rem; font-weight: 700; text-align: center; margin-bottom: var(--sp-8); }
+.auth-card__footer {
+  text-align: center;
+  margin-top: var(--sp-5);
+  font-size: 0.875rem; color: var(--text-muted);
+}
+.auth-card__footer a { font-weight: 600; color: var(--red); }
+
+/* ═══════════════════════════════════════════════════════════
+   VISA GUIDE PAGE
+═══════════════════════════════════════════════════════════ */
+.visa-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #0f3460 100%);
+  color: #fff; padding: var(--sp-12) var(--sp-6);
+  text-align: center;
+}
+.visa-hero h1 { color: #fff; margin-bottom: var(--sp-4); }
+.visa-hero p  { color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto; }
+
+.visa-card {
+  background: linear-gradient(135deg, #0a1628, var(--navy-mid));
+  color: #fff;
+  border-radius: var(--r-lg);
+  padding: var(--sp-8);
+  margin-bottom: var(--sp-5);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.visa-card h3   { color: #7eb8f0; font-size: 1.1rem; margin-bottom: var(--sp-4); }
+.visa-card p,
+.visa-card li   { color: rgba(255,255,255,0.8); font-size: 0.875rem; line-height: 1.9; }
+.visa-card ul   { display: flex; flex-direction: column; gap: 4px; }
+.visa-card ul li { display: flex; gap: var(--sp-2); align-items: flex-start; }
+.visa-card ul li::before { content: '🇯🇵'; flex-shrink: 0; }
+
+.visa-step {
+  display: flex; gap: var(--sp-4); align-items: flex-start;
+  margin-bottom: var(--sp-4);
+}
+.visa-step__num {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: var(--red); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem;
+}
+.visa-step__num--done { background: var(--green); }
+.visa-step__title { color: #7eb8f0; font-weight: 700; display: block; margin-bottom: 4px; }
+.visa-step__desc  { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+
+.industry-tags { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-4); }
+.industry-tag  {
+  padding: 5px 14px; border-radius: var(--r-full);
+  font-size: 0.78rem; font-weight: 600;
+  background: rgba(188,0,45,0.18);
+  border: 1px solid rgba(188,0,45,0.35);
+  color: #ff9a9a;
+}
+
+.disclaimer {
+  background: var(--amber-bg);
+  border: 1px solid var(--amber-border);
+  border-radius: var(--r-md);
+  padding: var(--sp-4) var(--sp-5);
+  font-size: 0.85rem; color: var(--amber);
+  margin-top: var(--sp-5);
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO SECTION (home page)
+═══════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 55%, #0f3460 100%);
+  color: #fff;
+  padding: var(--sp-16) var(--sp-6) var(--sp-12);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '日'; font-family: var(--font-jp);
+  position: absolute; right: -40px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 320px; color: rgba(255,255,255,0.03);
+  pointer-events: none; line-height: 1;
+}
+.hero__badge {
+  display: inline-block; margin-bottom: var(--sp-5);
+  padding: 6px var(--sp-4); border-radius: var(--r-full);
+  background: rgba(188,0,45,0.18);
+  border: 1px solid rgba(188,0,45,0.4);
+  color: #ff8080; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.hero h1 { color: #fff; margin-bottom: var(--sp-4); }
+.hero h1 span { color: var(--red); }
+.hero p  { color: rgba(255,255,255,0.75); max-width: 580px; margin: 0 auto var(--sp-8); }
+
+.hero__btns { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; }
+.hero__stats {
+  display: flex; justify-content: center; gap: var(--sp-10);
+  margin-top: var(--sp-12); padding-top: var(--sp-10);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  flex-wrap: wrap;
+}
+.hero-stat { text-align: center; }
+.hero-stat__num   { font-size: 2rem; font-weight: 700; color: var(--red); display: block; }
+.hero-stat__label { font-size: 0.78rem; color: rgba(255,255,255,0.55); }

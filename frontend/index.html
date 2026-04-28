@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JFT-Basic মক পরীক্ষা — বাংলাদেশী শিক্ষার্থীদের জন্য সম্পূর্ণ JFT-Basic প্রস্তুতি সাইট।">
+  <title>JFT-Basic প্রস্তুতি</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Styles (order matters: tokens → components → feature-specific) -->
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/components.css">
+  <link rel="stylesheet" href="/styles/exam.css">
+  <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+<body>
+
+  <!-- Navbar mount point -->
+  <div id="navbar-mount"></div>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <!-- Main app container — pages render here -->
+  <main id="app" role="main"></main>
+
+  <!-- ═══ JavaScript Modules (load order: utils → auth → router → components → pages → app) ═══ -->
+
+  <!-- Core utilities -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/router.js"></script>
+
+  <!-- Components -->
+  <script src="/components/Navbar.js"></script>
+  <script src="/components/ExamCard.js"></script>
+  <script src="/components/QuestionRenderer.js"></script>
+
+  <!-- Page modules -->
+  <script src="/pages/ExamPage.js"></script>
+  <script src="/pages/ResultsPage.js"></script>
+  <script src="/pages/DashboardPage.js"></script>
+
+  <!-- App bootstrap -->
+  <script>
+    // ─── Inline pages (small enough to stay here) ───────────────────────────
+
+    /** Home page */
+    function renderHome(app) {
+      app.innerHTML = `
+        <div class="hero">
+          <div class="hero__badge">🎌 জাপান ফাউন্ডেশন অনুমোদিত পরীক্ষার প্রস্তুতি</div>
+          <h1>JFT-Basic পরীক্ষায় <span>সফল হোন</span><br>জাপানে কাজের স্বপ্ন পূরণ করুন</h1>
+          <p>বাংলাদেশী কর্মীদের জন্য সম্পূর্ণ বাংলায় JFT-Basic প্রস্তুতি। মক টেস্ট, বিস্তারিত ফিডব্যাক, ভিসা গাইড।</p>
+          <div class="hero__btns">
+            <a href="/exams"   class="btn btn--primary btn--lg">✏️ পরীক্ষা শুরু করুন</a>
+            <a href="/about"   class="btn btn--outline btn--lg" style="border:1.5px solid rgba(255,255,255,0.3);color:#fff;background:transparent">📖 JFT সম্পর্কে জানুন</a>
+          </div>
+          <div class="hero__stats">
+            <div class="hero-stat"><span class="hero-stat__num">৫টি</span><span class="hero-stat__label">সম্পূর্ণ মক টেস্ট</span></div>
+            <div class="hero-stat"><span class="hero-stat__num">১০০%</span><span class="hero-stat__label">বাংলায় ব্যাখ্যা</span></div>
+            <div class="hero-stat"><span class="hero-stat__num">৪ সেকশন</span><span class="hero-stat__label">আসল পরীক্ষার কাঠামো</span></div>
+            <div class="hero-stat"><span class="hero-stat__num">বিনামূল্যে</span><span class="hero-stat__label">সম্পূর্ণ ফ্রি</span></div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="container">
+            <h2 class="section-title">কেন এই সাইট ব্যবহার করবেন?</h2>
+            <p class="section-sub">বাংলাদেশী শিক্ষার্থীদের কথা মাথায় রেখে তৈরি</p>
+            <div class="grid-3">
+              ${[
+                ['🎯', 'বাস্তব পরীক্ষার মতো', 'অফিসিয়াল JFT-Basic কাঠামো অনুসরণ করে। ৪টি সেকশন, টাইমার, স্কোরিং হুবহু একই।'],
+                ['📝', 'বাংলায় বিস্তারিত ব্যাখ্যা', 'প্রতিটি ভুলের জন্য সম্পূর্ণ বাংলায় ব্যাখ্যা। কেন ভুল, কীভাবে এড়ানো যাবে।'],
+                ['🛂', 'ভিসা গাইড', 'JFT পাস করে কোন ভিসা পাওয়া যায়, কোন শিল্পে কাজ করা যাবে — বিস্তারিত।'],
+                ['📊', 'অগ্রগতি ট্র্যাকিং', 'প্রতিটি পরীক্ষার ফলাফল সংরক্ষিত। কোথায় দুর্বল তা পরিষ্কার ড্যাশবোর্ডে দেখুন।'],
+                ['🎌', 'জাপানি ভাষা শিক্ষা', 'হিরাগানা, রোমাজি, ও বাংলা অর্থসহ প্রশ্ন। শেখা আরও সহজ।'],
+                ['📅', 'পড়াশোনার পরিকল্পনা', 'দুর্বলতা অনুযায়ী ৪ সপ্তাহের পরিকল্পনা। লক্ষ্য ঠিক রাখুন।'],
+              ].map(([icon, title, desc]) => `
+                <div class="card card--hover info-card">
+                  <span class="info-card__icon">${icon}</span>
+                  <h3 class="info-card__title">${title}</h3>
+                  <p>${desc}</p>
+                </div>`).join('')}
+            </div>
+          </div>
+        </div>`;
+    }
+
+    /** About page */
+    function renderAbout(app) {
+      app.innerHTML = `
+        <div class="section">
+          <div class="container">
+            <h2 class="section-title">JFT-Basic কী?</h2>
+            <p class="section-sub">Japan Foundation Test for Basic Japanese — জাপানে কাজ করতে যাওয়ার জন্য গুরুত্বপূর্ণ পরীক্ষা</p>
+            <div class="grid-2">
+              ${[
+                ['var(--red)',   '🎯', 'JFT-Basic এর উদ্দেশ্য', 'JFT-Basic (Japan Foundation Test for Basic Japanese) হলো জাপান ফাউন্ডেশন কর্তৃক পরিচালিত পরীক্ষা। CEFR এর <strong>A2 স্তর</strong> পরিমাপ করে। Specified Skill Worker (SSW) ভিসার জন্য ভাষাগত যোগ্যতার প্রমাণ হিসেবে ব্যবহৃত।'],
+                ['var(--blue)',  '🆚', 'JFT বনাম JLPT পার্থক্য', '<ul><li>JFT CBT (কম্পিউটার), JLPT পেপার-ভিত্তিক</li><li>JFT ফলাফল পরীক্ষার দিনই পাওয়া যায়</li><li>JFT বছরে অনেকবার, JLPT মাত্র ২ বার</li><li>SSW ভিসায় JFT-Basic বা JLPT N4 যেকোনো একটি</li></ul>'],
+                ['var(--green)', '🏆', 'পাসের মানদণ্ড', '<strong style="font-size:1.5rem;color:var(--red)">২০০/২৫০</strong><br>পয়েন্ট পেলে পাস। মোট স্কোর রেঞ্জ: ১০–২৫০। সার্টিফিকেটের মেয়াদ ২ বছর।'],
+                ['var(--amber)', '💻', 'CBT পদ্ধতি', 'কম্পিউটারে প্রশ্ন দেখানো হয়। Listening অংশে হেডফোনে অডিও শোনা যায়। Bengali/Bangla ভাষায় প্রশ্নের পরিস্থিতি দেখা যায়।'],
+              ].map(([color, icon, title, content]) => `
+                <div class="card info-card">
+                  <div class="info-card__accent" style="background:${color}"></div>
+                  <span class="info-card__icon">${icon}</span>
+                  <h3 class="info-card__title">${title}</h3>
+                  <div style="font-size:0.875rem;color:var(--text-secondary);line-height:1.9">${content}</div>
+                </div>`).join('')}
+            </div>
+          </div>
+        </div>`;
+    }
+
+    /** Exam list page */
+    async function renderExams(app) {
+      app.innerHTML = `
+        <div class="section">
+          <div class="container">
+            <h2 class="section-title">মক পরীক্ষাসমূহ</h2>
+            <p class="section-sub">৫টি সম্পূর্ণ মক পরীক্ষা — প্রতিটিতে ৪টি সেকশন, বাংলায় বিস্তারিত ফিডব্যাক</p>
+            <div class="grid-3" id="exams-grid">
+              ${[1,2,3].map(() => ExamCard.skeleton()).join('')}
+            </div>
+          </div>
+        </div>`;
+
+      try {
+        const exams = await API.Exam.list();
+        const grid = document.getElementById('exams-grid');
+        if (grid) {
+          grid.innerHTML = exams.map(e => ExamCard.render(e)).join('');
+          grid.addEventListener('click', (ev) => {
+            const btn = ev.target.closest('[data-exam-id]');
+            if (btn) Router.navigate(`/exam/${btn.dataset.examId}`);
+          });
+        }
+      } catch (err) {
+        Utils.error('পরীক্ষার তালিকা লোড হয়নি: ' + err.message);
+      }
+    }
+
+    /** Auth pages */
+    function renderLogin(app) {
+      if (Auth.isLoggedIn()) { Router.replace('/dashboard'); return; }
+      app.innerHTML = `
+        <div class="auth-page">
+          <div class="auth-card">
+            <div class="auth-card__logo">
+              <span class="auth-card__jp">日</span>
+            </div>
+            <h2 class="auth-card__title">লগইন করুন</h2>
+            <form id="login-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="email">ইমেইল</label>
+                <input type="email" id="email" name="email" placeholder="আপনার ইমেইল" autocomplete="email" required>
+                <span class="form-error" id="email-error"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="password">পাসওয়ার্ড</label>
+                <input type="password" id="password" name="password" placeholder="পাসওয়ার্ড" autocomplete="current-password" required>
+                <span class="form-error" id="password-error"></span>
+              </div>
+              <button type="submit" class="btn btn--primary" style="width:100%">লগইন করুন</button>
+            </form>
+            <div class="auth-card__footer">
+              অ্যাকাউন্ট নেই? <a href="/register">নিবন্ধন করুন</a>
+            </div>
+          </div>
+        </div>`;
+
+      document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        Utils.clearFormErrors(e.target);
+        const btn = e.target.querySelector('[type=submit]');
+        btn.disabled = true; btn.textContent = 'লগইন হচ্ছে...';
+        try {
+          await Auth.login(e.target.email.value, e.target.password.value);
+          Utils.success('লগইন সফল!');
+          const redirect = new URLSearchParams(location.search).get('redirect') || '/dashboard';
+          Router.navigate(redirect);
+        } catch (err) {
+          Utils.setFieldError('password', err.message);
+          btn.disabled = false; btn.textContent = 'লগইন করুন';
+        }
+      });
+    }
+
+    function renderRegister(app) {
+      if (Auth.isLoggedIn()) { Router.replace('/dashboard'); return; }
+      app.innerHTML = `
+        <div class="auth-page">
+          <div class="auth-card">
+            <div class="auth-card__logo"><span class="auth-card__jp">日</span></div>
+            <h2 class="auth-card__title">নিবন্ধন করুন</h2>
+            <form id="register-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="name">নাম</label>
+                <input type="text" id="name" name="name" placeholder="আপনার নাম" required>
+                <span class="form-error" id="name-error"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">ইমেইল</label>
+                <input type="email" id="email" name="email" placeholder="ইমেইল ঠিকানা" required>
+                <span class="form-error" id="email-error"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="password">পাসওয়ার্ড <span class="form-hint">(অন্তত ৮ অক্ষর)</span></label>
+                <input type="password" id="password" name="password" placeholder="পাসওয়ার্ড" required minlength="8">
+                <span class="form-error" id="password-error"></span>
+              </div>
+              <button type="submit" class="btn btn--primary" style="width:100%">নিবন্ধন করুন</button>
+            </form>
+            <div class="auth-card__footer">
+              ইতিমধ্যে অ্যাকাউন্ট আছে? <a href="/login">লগইন করুন</a>
+            </div>
+          </div>
+        </div>`;
+
+      document.getElementById('register-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        Utils.clearFormErrors(e.target);
+        const btn = e.target.querySelector('[type=submit]');
+        btn.disabled = true; btn.textContent = 'নিবন্ধন হচ্ছে...';
+        try {
+          await Auth.register(e.target.name.value, e.target.email.value, e.target.password.value);
+          Utils.success('অ্যাকাউন্ট তৈরি হয়েছে!');
+          Router.navigate('/dashboard');
+        } catch (err) {
+          Utils.error(err.message);
+          btn.disabled = false; btn.textContent = 'নিবন্ধন করুন';
+        }
+      });
+    }
+
+    /** Visa page */
+    function renderVisa(app) {
+      app.innerHTML = `
+        <div class="visa-hero">
+          <div class="container--sm">
+            <h1>🛂 ভিসা গাইড</h1>
+            <p>JFT-Basic পাস করে কীভাবে জাপানে কাজ করতে যাবেন — সম্পূর্ণ বাংলায়</p>
+          </div>
+        </div>
+        <div class="section--sm">
+          <div class="container--sm">
+            <div class="visa-card">
+              <h3>🏢 Tokutei Ginou (特定技能) — SSW ভিসা কী?</h3>
+              <p>SSW Type i ভিসায় ১৬টি শিল্পে কাজ করা যায়। বাংলাদেশীদের জন্য জনপ্রিয়:</p>
+              <div class="industry-tags">
+                ${['🏥 Kaigo — পরিচর্যা','🍜 খাদ্য শিল্প','🏗️ নির্মাণ','🌾 কৃষি','🐟 মৎস্য','🏭 উৎপাদন','🏨 হোটেল','🚗 অটোমোবাইল'].map(t => `<span class="industry-tag">${t}</span>`).join('')}
+              </div>
+            </div>
+            <div class="visa-card">
+              <h3>🗺️ ভিসা পাওয়ার ধাপসমূহ</h3>
+              ${[
+                ['JFT-Basic পরীক্ষায় পাস করুন', 'ন্যূনতম ২০০ পয়েন্ট অর্জন করতে হবে।'],
+                ['দক্ষতা পরীক্ষায় পাস করুন', 'আপনি যে শিল্পে কাজ করতে চান সেই বিষয়ে পৃথক দক্ষতা পরীক্ষা।'],
+                ['জাপানি নিয়োগকর্তা খুঁজুন', 'লাইসেন্সপ্রাপ্ত এজেন্সি বা সরাসরি নিয়োগকর্তার মাধ্যমে চুক্তি।'],
+                ['ভিসার জন্য আবেদন করুন', 'জাপানি দূতাবাসে প্রয়োজনীয় কাগজপত্র জমা দিন।'],
+              ].map(([title, desc], i) => `
+                <div class="visa-step">
+                  <div class="visa-step__num">${i + 1}</div>
+                  <div><span class="visa-step__title">${title}</span><span class="visa-step__desc">${desc}</span></div>
+                </div>`).join('')}
+              <div class="visa-step">
+                <div class="visa-step__num visa-step__num--done">✓</div>
+                <div><span class="visa-step__title" style="color:#90ee90">জাপানে যান!</span><span class="visa-step__desc">অভিনন্দন! আপনার স্বপ্নের যাত্রা শুরু।</span></div>
+              </div>
+            </div>
+            <div class="disclaimer">
+              ⚖️ <strong>গুরুত্বপূর্ণ নোট:</strong> এটি তথ্যভিত্তিক গাইড। অফিসিয়াল সিদ্ধান্ত ইমিগ্রেশন কর্তৃপক্ষ নেবে। সর্বশেষ তথ্যের জন্য জাপানি দূতাবাস বা অফিসিয়াল ওয়েবসাইট দেখুন।
+            </div>
+          </div>
+        </div>`;
+    }
+
+    // ─── Router Setup ─────────────────────────────────────────────────────────
+
+    const app = document.getElementById('app');
+
+    Router.on('/',           () => renderHome(app));
+    Router.on('/about',      () => renderAbout(app));
+    Router.on('/exams',      () => renderExams(app));
+    Router.on('/visa',       () => renderVisa(app));
+    Router.on('/login',      () => renderLogin(app));
+    Router.on('/register',   () => renderRegister(app));
+    Router.on('/dashboard',  () => DashboardPage.mount(app));
+    Router.on('/results',    () => ResultsPage.mount(app));
+    Router.on('/exam/([^/]+)', (examId) => ExamPage.mount(app, examId));
+
+    // ─── Bootstrap ────────────────────────────────────────────────────────────
+
+    // Init theme from localStorage
+    Utils.initTheme();
+
+    // Mount navbar
+    const navMount = document.getElementById('navbar-mount');
+    if (navMount) Navbar.mount(navMount);
+
+    // Dispatch initial route
+    Router.dispatch();
+  </script>
+
+</body>
+</html>

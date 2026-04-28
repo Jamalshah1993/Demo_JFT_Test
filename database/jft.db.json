@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "24051836-f0f3-487e-ab1d-d52f3a0b82f6",
+      "name": "Jamal Shah",
+      "email": "shnjml@yahoo.com",
+      "passwordHash": "100000:sha512:6d5da9b33082833d902efd56a7827fa7:c4c549f57bb24ddc127960b1d9ba6dd4a22c376d571edbb53ecbc2e998a429a0be8ba2cdcbaa1461a0f853473acd55220ce7cd3a94a30eb9346f738fd7973192",
+      "createdAt": "2026-04-15T08:49:17.080Z",
+      "updatedAt": "2026-04-15T08:49:17.080Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "b764e56f-616e-4287-97bb-e91f57af5f51",
+      "userId": "24051836-f0f3-487e-ab1d-d52f3a0b82f6",
+      "token": "eyJ1c2VySWQiOiIyNDA1MTgzNi1mMGYzLTQ4N2UtYWIxZC1kNTJmM2EwYjgyZjYiLCJlbWFpbCI6InNobmptbEB5YWhvby5jb20iLCJleHAiOjE3NzY4NDc3NTcwODV9.inA1VHUcw_inwJly7gW5kLZfLeuzzshEGDQAaKeZ-X8",
+      "expiresAt": "2026-04-22T08:49:17.085Z",
+      "createdAt": "2026-04-15T08:49:17.090Z"
+    }
+  ],
+  "progress": [],
+  "attempts": [],
+  "__meta": {
+    "version": "1.0.0",
+    "created": "2026-04-15T08:32:35.122Z",
+    "description": "JFT-Basic Platform Database"
+  }
+}

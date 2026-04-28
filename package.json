@@ -1,0 +1,16 @@
+{
+  "name": "jft-basic-platform",
+  "version": "1.0.0",
+  "description": "JFT-Basic exam preparation platform for Bangladeshi students",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["jft-basic", "japanese", "exam", "bangladesh"],
+  "author": "",
+  "license": "MIT"
+}
